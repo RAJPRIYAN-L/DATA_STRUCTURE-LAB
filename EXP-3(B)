@@ -1,0 +1,79 @@
+# LINKED_LIST_STACK-USING-PYTHON
+
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+class Stack:
+    def __init__(self):
+        self.top=None
+
+    def is_empty(self):
+        return self.top is None
+    
+    def push(self,data):
+        new_node=Node(data)
+        new_node.next=self.top
+        self.top=new_node
+
+    def pop(self):
+        if self.is_empty() :
+            return None
+        popped_data=self.top.data
+        self.top=self.top.next
+        return popped_data
+    
+    def peek(self):
+        if self.is_empty():
+            return None
+        return self.top.data
+
+    def display(self):
+        if self.is_empty():
+            return None
+        current=self.top
+        while current is not None:
+            print(f"[{current.data}]->",end=" ")
+            current=current.next
+        print("NULL\n")
+        
+
+    
+book=Stack()
+while True:
+        print("""
+          1.PUSH A BOOK INTO STACK
+          2.POP A BOOK INTO STACK
+          3.PEEKING
+          4.CHECK WHETHER THE STACK IS EMPTY
+          5.DISPLAY THE STACK
+          6.EXIT""")
+
+        choice = input("Enter your choice: ").strip()
+        if choice == "1":
+            data = input("ENTER THE BOOK NAME TO PUSH: ")
+            book.push(data)
+
+        elif choice == "2":
+            po=book.pop()
+            print(po,"BOOK REMOVED")
+
+        elif choice == "3":
+            pe=book.peek()
+            print(pe)
+
+        elif choice == "4":
+            emp=book.is_empty()
+            print(emp)
+
+        elif choice == "5":
+            d=book.display()
+            print(d)
+
+        elif choice == "6":
+            print("EXITING THE STACK")
+            break
+        else:
+            print("INVALID INPUT")
+            break
