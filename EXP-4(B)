@@ -1,0 +1,89 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+class Queue:
+    def __init__(self):
+        self.front=None
+        self.rear=None
+
+    def is_empty(self):
+        return self.front is None
+    def enqueue(self,data):
+        new_node=Node(data)
+        if self.rear is None:
+            self.front=self.rear=new_node
+            return
+        self.rear.next=new_node
+        self.rear=new_node
+    def dequeue(self):
+        if self.is_empty():
+            return None
+        data=self.front.data
+        self.front=self.front.next
+        if self.front is None:
+            self.rear=None
+        return
+    def peek(self):
+        if self.is_empty():
+            return None
+        return self.front.data
+    def size(self):
+        count=0
+        current=self.front
+        while current:
+            count+=1
+            currrent=current.next
+        return count
+    
+    def display(self):
+        if self.is_empty():
+            return None
+        current=self.front
+        while current:
+            print(f"[{current.data}]->",end=" ")
+            current=current.next
+        print("NULL\n")
+
+q=Queue()
+while True:
+    print("""
+          1.CAR ENTERED
+          2.CAR EXITING
+          3.PEEK
+          4.CHECK WHETHER THE QUEUE IS EMPTY
+          5.SIZE OF THE QUEUE
+          6.DISPLAY
+          7.EXIT""")
+    choice=input("ENTER THE OPERATION :").strip()
+    if choice=="1":
+        data=input("ENTER A CAR TO ADD IN QUEUE : ")
+        q.enqueue(data)
+        print(data,"Is ADDED SUCCESSFULLY")
+
+    elif choice=="2":
+        de=q.dequeue()
+        print("REMOVED")
+
+    elif choice=="3":
+        pee=q.peek()
+        print(pee)
+
+    elif choice=="4":
+        print(q.is_empty())
+
+    elif choice=="5":
+        si=q.size()
+        print(si)
+
+    elif choice=="6":
+        dis=q.display()
+        print(dis)
+
+    elif choice=="7":
+        print("EXITING..!")
+        break
+    else:
+        print("INVALID CHOICE")
+        break
