@@ -1,46 +1,30 @@
-# LINKED_LIST_STACK-USING-PYTHON
-
-
-class Node:
-    def __init__(self,data):
-        self.data=data
-        self.next=None
-
 class Stack:
     def __init__(self):
-        self.top=None
-
-    def is_empty(self):
-        return self.top is None
-    
-    def push(self,data):
-        new_node=Node(data)
-        new_node.next=self.top
-        self.top=new_node
+        self.stack=[]
+    def push(self,item):
+        self.stack.append(item)
+        print(f"{item} PUSHED TO THE STACK")
 
     def pop(self):
-        if self.is_empty() :
-            return None
-        popped_data=self.top.data
-        self.top=self.top.next
-        return popped_data
+        if self.is_empty():
+            return "STACK UNDERFLOW"
+        return self.stack.pop()
     
     def peek(self):
         if self.is_empty():
-            return None
-        return self.top.data
-
-    def display(self):
-        if self.is_empty():
-            return None
-        current=self.top
-        while current is not None:
-            print(f"[{current.data}]->",end=" ")
-            current=current.next
-        print("NULL\n")
-        
-
+            return "STACK IS EMPTY"
+        return self.stack[-1]
     
+    def is_empty(self):
+        return len(self.stack)==0
+
+    def size(self):
+        return len(self.stack)
+    
+    def display(self):
+        print("STACK ELEMENTS :",self.stack)
+
+
 book=Stack()
 while True:
         print("""
@@ -48,8 +32,9 @@ while True:
           2.POP A BOOK INTO STACK
           3.PEEKING
           4.CHECK WHETHER THE STACK IS EMPTY
-          5.DISPLAY THE STACK
-          6.EXIT""")
+          5.SIZE OF THE STACK
+          6.DISPLAY THE STACK
+          7.EXIT""")
 
         choice = input("Enter your choice: ").strip()
         if choice == "1":
@@ -69,10 +54,14 @@ while True:
             print(emp)
 
         elif choice == "5":
+            s=book.size()
+            print(s)
+
+        elif choice == "6":
             d=book.display()
             print(d)
 
-        elif choice == "6":
+        elif choice == "7":
             print("EXITING THE STACK")
             break
         else:
