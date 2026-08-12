@@ -1,0 +1,53 @@
+#BINARY_TREE
+
+class Book:
+    def __init__ (self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+
+root=Book("HARRY POTTER")
+root.left=Book("SOCCER STONE")
+root.right=Book("CHAMBER OF SCERETS")
+root.left.left=Book("GOBLET OF FIRE")
+root.left.right=Book("HALF BLOOD PRINCE")
+root.right.left=Book("DEATHLY HOLLOWS")
+root.right.right=Book("PRISONERS OF AZKABAN")
+
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.data,end="-->")
+        inorder(root.right)
+
+def postorder(root):
+    if root:
+        postorder(root.left)
+        postorder(root.right)
+        print(root.data,end="-->")
+
+def preorder(root):
+    if root:
+        print(root.data,end="-->")
+        preorder(root.left)
+        preorder(root.right)
+        
+while True:
+    print("""
+    --ENTER OPERATION--
+    1.INORDER
+    2.PREORDER
+    3.POSTORDER
+    4.EXIT""")
+    ch=int(input("ENTER YOUR CHOICE :"))
+    if ch==1:
+        inorder(root)
+    elif ch==2:
+        preorder(root)
+    elif ch==3:
+        postorder(root)
+    elif ch==4:
+        print("EXITING...!!!")
+        break
+    else:
+        print("INVALID CHOICE")    
